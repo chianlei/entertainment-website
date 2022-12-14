@@ -10,21 +10,23 @@ import { BsSearch } from "react-icons/bs";
 
 const useStyles = createStyles(() => ({
   searchBar: {
-    width: "100%",
+    width: "90%",
+    // marginLeft: "200px",
     marginTop: "70px",
   },
   searchIcon: {
     marginTop: "10px",
-    marginRight: "auto",
-    marginLeft: "auto",
+    marginRight: "25px",
+    // marginLeft: "auto",
   },
   searchInput: {
-    width: "80%",
-    marginRight: "auto",
+    width: "75%",
+    // marginRight: "auto",
     // color: "white",
+    marginRight: "33px",
   },
   searchBtn: {
-    width: "15%",
+    width: "10%",
     color: "white",
     background: "#5A6A90",
     "&:hover": {

@@ -23,9 +23,9 @@ const TV = () => {
 
   const genreTVQuery = useQuery(["genreTV"], () => getGenreTV);
 
-  useEffect(() => {
-    genreTVQuery.refetch();
-  }, []);
+  // useEffect(() => {
+  //   genreTVQuery.refetch();
+  // }, []);
 
   return (
     <>

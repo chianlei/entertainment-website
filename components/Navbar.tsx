@@ -6,6 +6,7 @@ import {
   UnstyledButton,
   createStyles,
   Stack,
+  Box,
 } from "@mantine/core";
 import {
   TablerIcon,
@@ -16,6 +17,7 @@ import {
   IconUser,
 } from "@tabler/icons";
 // import movieIcon from '../assets/movieIcon.svg'
+import { useRouter } from "next/router";
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -72,38 +74,42 @@ function NavbarLink({ icon: Icon, label, active, onClick }: NavbarLinkProps) {
 }
 
 const mockdata = [
-  { icon: IconGhost2, label: "Homepage" },
-  { icon: IconCategory, label: "Category" },
-  { icon: IconMovie, label: "Movie" },
-  { icon: IconDeviceTvOld, label: "TV" },
-  { icon: IconUser, label: "Account" },
+  { icon: IconGhost2, label: "Homepage", path: "home" },
+  { icon: IconCategory, label: "Category", path: "home" },
+  { icon: IconMovie, label: "Movie", path: "movie" },
+  { icon: IconDeviceTvOld, label: "TV", path: "tvv" },
+  { icon: IconUser, label: "Account", path: "account" },
 ];
 
-export function NavbarMinimal() {
-  const [active, setActive] = useState(2);
+export function Navbarr() {
+  const [active, setActive] = useState(0);
+  const router = useRouter();
 
   const links = mockdata.map((link, index) => (
     <NavbarLink
       {...link}
       key={link.label}
       active={index === active}
-      onClick={() => setActive(index)}
+      onClick={() => {
+        setActive(index);
+        router.push(link.path);
+      }}
     />
   ));
 
   return (
-    <Navbar  width={{ base: 80 }} p="md">
-      <Navbar.Section grow mt={50}>
-        <Stack >
-          {links}
-        </Stack>
-      </Navbar.Section>
-      {/* <Navbar.Section>
+    <Box pos="fixed">
+      <Navbar width={{ base: 80 }} p="md">
+        <Navbar.Section grow mt={50}>
+          <Stack>{links}</Stack>
+        </Navbar.Section>
+        {/* <Navbar.Section>
         <Stack justify="center" spacing={0}>
           <NavbarLink icon={} label="Change account" />
           <NavbarLink icon={} label="Logout" />
         </Stack>
       </Navbar.Section> */}
-    </Navbar>
+      </Navbar>
+    </Box>
   );
 }

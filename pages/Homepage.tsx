@@ -1,7 +1,8 @@
-import { NavbarMinimal } from "../components/Navbar";
+import { Navbarr } from "../components/Navbar";
 import SearchBar from "../components/SearchBar";
 import { Flex } from "@mantine/core";
 import { Demo } from "../components/Tabs";
+import HomeTabs from "../components/HomeTabs";
 
 const Homepage = () => {
   // interface DailySummaryProps {
@@ -14,9 +15,10 @@ const Homepage = () => {
 
   return (
     <>
-          <Flex>
-              {/* <Demo></Demo> */}
-        <NavbarMinimal />
+      <Flex>
+        {/* <Demo></Demo> */}
+        <Navbarr />
+        {/* <HomeTabs /> */}
         <SearchBar />
       </Flex>
     </>
