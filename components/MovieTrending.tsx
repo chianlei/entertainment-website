@@ -1,137 +1,147 @@
-import { Button, Flex, Text, createStyles, Grid, Box } from "@mantine/core";
-import { getGenreTV } from "../api/genreApi";
+import { Carousel } from "@mantine/carousel";
+import {
+  Button,
+  Flex,
+  Text,
+  createStyles,
+  Grid,
+  Box,
+  Paper,
+  Title,
+} from "@mantine/core";
 import { getMovieTrending } from "../api/trendingApi";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
-import { wrap } from "module";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import { Autoplay, Keyboard, Mousewheel, Navigation, Pagination } from "swiper";
-import Image from "next/image";
 
 const useStyles = createStyles(() => ({
-  container: {
-    width: "40%",
-    marginLeft: "200px",
+  div: {
+    width: "88%",
+    marginLeft: "-12px",
+    // justify: "center",
     marginBottom: "50px",
+    // height: "100%",
+  },
+
+  div2: {
+    // width: "100%",
+    // marginLeft: "auto",
+    // marginRight: "auto",
+    // display: "flex",
+    // flexDirection: "row",
+    // justify: "center",
+    // height: "100%",
+  },
+  card: {
+    height: 180,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  },
+  title: {
+    fontFamily: `Greycliff CF`,
+    fontWeight: 900,
+    color: "pink",
+    lineHeight: 1.2,
+    fontSize: 26,
+    // marginTop: theme.spacing.xs,
+    width: "100%",
+    // background: "grey",
+  },
+  title2: {
+    fontFamily: `Greycliff CF`,
+    fontWeight: 900,
+    color: "black",
+    lineHeight: 1.2,
+    fontSize: 26,
+    // marginTop: theme.spacing.xs,
+    width: "100%",
+    // background: "grey",
+  },
+  category: {
+    color: "white",
+    opacity: 0.7,
+    fontWeight: 700,
+    textTransform: "uppercase",
+    background: "grey",
+  },
+  category2: {
+    color: "red",
+    // opacity: 0.7,
+    fontWeight: 900,
+    textTransform: "uppercase",
+    // background: "grey",
+    textAlign: "end",
+    width: "100%",
+  },
+  container: {
+    width: "100%",
+    marginLeft: "auto",
+    marginRight: "auto",
+    marginTop: "30px",
     // height: "180px",
     // background: "#0F766E",
     // borderRadius: 10,
     // flexWrap: "wrap",
   },
-  title: {
-    fontFamily: `Greycliff CF`,
-    fontWeight: 900,
-    color: "red",
-    lineHeight: 1.2,
-    fontSize: 18,
-    // marginTop: theme.spacing.xs,
-    textShadow: "#FC0 1px 0 10px;",
-  },
-  trendingMovie: {
-    textShadow: "1px 1px 2px #F5634E, 0 0 1em #, 0 0 0.2em  #F1AD26",
-    fontSize: 14,
-  },
-  greenBox: {},
 }));
 
-const MovieTrending = () => {
+export default function MovieTrending() {
   const { classes } = useStyles();
-
   const {
     data: mvTrendingData,
     isLoading: mvTrendingIsLoading,
     isSuccess: mvTrendingIsSuccess,
   } = useQuery(["movieTrending"], getMovieTrending);
 
-  console.log("Movie Trending data:", mvTrendingData);
-
   return (
-    <>
-      {/* <Flex className={classes.container}> */}
-      <>
-        <Flex align="center" justify="center">
-          <Swiper
-            cssMode={true}
-            slidesPerView={3}
-            spaceBetween={10}
-            autoplay={{
-              delay: 5000,
-              disableOnInteraction: false,
-            }}
-            slidesPerGroup={2}
-            pagination={false}
-            mousewheel={true}
-            keyboard={true}
-            modules={[Navigation, Pagination, Mousewheel, Keyboard, Autoplay]}
-            // className="mySwiper"
-          >
-            {mvTrendingIsLoading && <SwiperSlide>Loading...</SwiperSlide>}
-            {mvTrendingIsSuccess &&
-              mvTrendingData.results.map((mvt: any) => (
-                <div key={mvt.id}>
-                  <SwiperSlide>
-                    <Box
-                    // style={{
-                    //   width: "100%",
-                    //   height: "100%",
-                    //   position: "sticky",
-                    // }}
-                    >
-                      <Image
-                        layout="responsive"
-                        objectFit="contain"
-                        // width={470}
-                        // height={230}
-                        src={`https://image.tmdb.org/t/p/original/${mvt.poster_path}`}
-                        alt="poster img"
-                      />
-                      <div
-                      // className={classes.title}
-                      >
-                        {mvt.title}
-                        <Text
-                          // className={classes.trendingMovie}
-                          variant="gradient"
-                          gradient={{ from: "indigo", to: "cyan", deg: 45 }}
-                        >
-                          {mvt.media_type}
-                        </Text>
-                      </div>
+    <div className={classes.div}>
+      <div className={classes.div2}>
+        <Text className={classes.title2}>Trending</Text>
+      </div>
+      <Carousel
+        // withIndicators
 
-                      {/* <div className={classes.group}>
-                          <Text className={classes.category} size="xs">
-                            {mvt.media_type}
-                          </Text>
-                          <Title order={3} className={classes.title}>
-                            {mvt.original_title}
-                          </Title>
-                        </div> */}
-                    </Box>
-                  </SwiperSlide>
-                </div>
-              ))}
-          </Swiper>
-        </Flex>
-        {/* {mvTrendingIsLoading && <Text>Loading ...</Text>}
-          {mvTrendingIsSuccess 
-            @ts-ignore
-            trendingData.genres.map((tv, index) => {
-              return (
-                <>
-                  <Grid grow>
-                    <Grid.Col md={6} lg={3} key={index}>
-                      <Button className={classes.greyBox}>{tv.name}</Button>
-                    </Grid.Col>
-                  </Grid>
-                </>
-              );
-            })
-        } */}
-      </>
-      {/* </Flex> */}
-    </>
+        height={200}
+        slideSize="33.33333%"
+        slideGap="md"
+        breakpoints={[{ maxWidth: "sm", slideSize: "100%", slideGap: 2 }]}
+        // loop
+        align="start"
+      >
+        {mvTrendingIsSuccess &&
+          //@ts-ignore
+          mvTrendingData.results.map((item) => {
+            return (
+              <Carousel.Slide key={item.id}>
+                <Paper
+                  shadow="md"
+                  p="xl"
+                  radius="md"
+                  sx={{
+                    backgroundImage: `url(https://image.tmdb.org/t/p/original/${item.backdrop_path})`,
+                  }}
+                  className={classes.card}
+                >
+                  <div>
+                    <Flex>
+                      <Text className={classes.category} size="xs">
+                        {item.release_date.slice(0, 4)}
+                      </Text>
+                      <Text className={classes.category2} size="xs">
+                        {item.media_type}
+                      </Text>
+                    </Flex>
+                    <Title order={3} className={classes.title}>
+                      {item.title}
+                    </Title>
+                  </div>
+                </Paper>
+              </Carousel.Slide>
+            );
+          })}
+      </Carousel>
+    </div>
   );
-};
-
-export default MovieTrending;
+}

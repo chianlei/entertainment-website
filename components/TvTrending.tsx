@@ -9,7 +9,7 @@ import {
   Paper,
   Title,
 } from "@mantine/core";
-import { getMovieTrending } from "../api/trendingApi";
+import { getTvTrending } from "../api/trendingApi";
 import { useQuery } from "@tanstack/react-query";
 
 const useStyles = createStyles(() => ({
@@ -22,16 +22,16 @@ const useStyles = createStyles(() => ({
   },
 
   div2: {
-    width: "100%",
-    marginLeft: "auto",
-    marginRight: "auto",
-    display: "flex",
-    flexDirection: "row",
-    justify: "center",
+    // width: "100%",
+    // marginLeft: "auto",
+    // marginRight: "auto",
+    // display: "flex",
+    // flexDirection: "row",
+    // justify: "center",
     // height: "100%",
   },
   card: {
-    height: 250,
+    height: 180,
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -39,7 +39,6 @@ const useStyles = createStyles(() => ({
     backgroundSize: "cover",
     backgroundPosition: "center",
   },
-
   title: {
     fontFamily: `Greycliff CF`,
     fontWeight: 900,
@@ -50,7 +49,16 @@ const useStyles = createStyles(() => ({
     width: "100%",
     // background: "grey",
   },
-
+  title2: {
+    fontFamily: `Greycliff CF`,
+    fontWeight: 900,
+    color: "black",
+    lineHeight: 1.2,
+    fontSize: 26,
+    // marginTop: theme.spacing.xs,
+    width: "100%",
+    // background: "grey",
+  },
   category: {
     color: "white",
     opacity: 0.7,
@@ -60,8 +68,8 @@ const useStyles = createStyles(() => ({
   },
   category2: {
     color: "red",
-    opacity: 0.7,
-    fontWeight: 700,
+    // opacity: 0.7,
+    fontWeight: 900,
     textTransform: "uppercase",
     // background: "grey",
     textAlign: "end",
@@ -79,18 +87,18 @@ const useStyles = createStyles(() => ({
   },
 }));
 
-export default function Swiperr() {
+export default function TvTrending() {
   const { classes } = useStyles();
   const {
-    data: mvTrendingData,
-    isLoading: mvTrendingIsLoading,
-    isSuccess: mvTrendingIsSuccess,
-  } = useQuery(["movieTrending"], getMovieTrending);
+    data: tvTrendingData,
+    isLoading: tvTrendingIsLoading,
+    isSuccess: tvTrendingIsSuccess,
+  } = useQuery(["tvTrending"], getTvTrending);
 
   return (
     <div className={classes.div}>
       <div className={classes.div2}>
-        <Text>Trending</Text>
+        <Text className={classes.title2}>Trending</Text>
       </div>
       <Carousel
         // withIndicators
@@ -102,9 +110,9 @@ export default function Swiperr() {
         // loop
         align="start"
       >
-        {mvTrendingIsSuccess &&
+        {tvTrendingIsSuccess &&
           //@ts-ignore
-          mvTrendingData.results.map((item) => {
+          tvTrendingData.results.map((item) => {
             return (
               <Carousel.Slide key={item.id}>
                 <Paper
@@ -119,14 +127,15 @@ export default function Swiperr() {
                   <div>
                     <Flex>
                       <Text className={classes.category} size="xs">
-                        {item.release_date.slice(0, 4)}
+                        {/* {item.release_date.slice(0, 4)} */}
                       </Text>
                       <Text className={classes.category2} size="xs">
                         {item.media_type}
                       </Text>
                     </Flex>
                     <Title order={3} className={classes.title}>
-                      {item.title}
+                      {item.title
+                      }
                     </Title>
                   </div>
                 </Paper>

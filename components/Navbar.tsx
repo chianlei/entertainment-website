@@ -74,8 +74,8 @@ function NavbarLink({ icon: Icon, label, active, onClick }: NavbarLinkProps) {
 }
 
 const mockdata = [
-  { icon: IconGhost2, label: "Homepage", path: "home" },
-  { icon: IconCategory, label: "Category", path: "home" },
+  { icon: IconGhost2, label: "Homepage", path: "/" },
+  { icon: IconCategory, label: "Category", path: "/" },
   { icon: IconMovie, label: "Movie", path: "movie" },
   { icon: IconDeviceTvOld, label: "TV", path: "tvv" },
   { icon: IconUser, label: "Account", path: "account" },

@@ -51,7 +51,16 @@ const useStyles = createStyles(() => ({
     width: "100%",
     // background: "white",
   },
-
+  title2: {
+    fontFamily: `Greycliff CF`,
+    fontWeight: 900,
+    color: "black",
+    lineHeight: 1.2,
+    fontSize: 26,
+    // marginTop: theme.spacing.xs,
+    width: "100%",
+    // background: "grey",
+  },
   category: {
     color: "white",
     opacity: 0.7,
@@ -92,7 +101,7 @@ export default function MoviePopular() {
   return (
     <div className={classes.div}>
       <div className={classes.div2}>
-        <Text>Popular</Text>
+        <Text className={classes.title2}>Popular</Text>
       </div>
       <Carousel
         // withIndicators

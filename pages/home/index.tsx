@@ -3,7 +3,7 @@ import { getGenreTV } from "../../api/genreApi";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { wrap } from "module";
-import Swiperr from "../../components/Swiperr";
+import MovieTrending from "../../components/MovieTrending";
 import MoviePopular from "../../components/MoviePopular";
 import MovieNowPlaying from "../../components/MovieNowPlaying";
 import MovieUpcoming from "../../components/MovieUpcoming";
@@ -27,11 +27,11 @@ const home = () => {
   return (
     <>
       <Flex className={classes.container}>
-        <Swiperr />
+        <MovieTrending />
         <MoviePopular />
         <MovieNowPlaying />
         <MovieUpcoming />
-        <MovieTopRated/>
+        <MovieTopRated />
       </Flex>
     </>
   );
