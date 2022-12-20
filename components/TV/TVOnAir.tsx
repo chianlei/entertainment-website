@@ -9,7 +9,7 @@ import {
   Paper,
   Title,
 } from "@mantine/core";
-import { getTvTrending } from "../api/trendingApi";
+import { getOnAirTv } from "../../api/tvApi";
 import { useQuery } from "@tanstack/react-query";
 
 const useStyles = createStyles(() => ({
@@ -87,18 +87,18 @@ const useStyles = createStyles(() => ({
   },
 }));
 
-export default function TvTrending() {
+export default function TvOnAir() {
   const { classes } = useStyles();
   const {
-    data: tvTrendingData,
-    isLoading: tvTrendingIsLoading,
-    isSuccess: tvTrendingIsSuccess,
-  } = useQuery(["tvTrending"], getTvTrending);
+    data: tvOnAirData,
+    isLoading: tvOnAirIsLoading,
+    isSuccess: tvOnAirIsSuccess,
+  } = useQuery(["tvOnAir"], getOnAirTv);
 
   return (
     <div className={classes.div}>
       <div className={classes.div2}>
-        <Text className={classes.title2}>Trending</Text>
+        <Text className={classes.title2}>On Air</Text>
       </div>
       <Carousel
         // withIndicators
@@ -110,9 +110,9 @@ export default function TvTrending() {
         // loop
         align="start"
       >
-        {tvTrendingIsSuccess &&
+        {tvOnAirIsSuccess &&
           //@ts-ignore
-          tvTrendingData.results.map((item) => {
+          tvOnAirData.results.map((item) => {
             return (
               <Carousel.Slide key={item.id}>
                 <Paper
@@ -127,15 +127,14 @@ export default function TvTrending() {
                   <div>
                     <Flex>
                       <Text className={classes.category} size="xs">
-                        {/* {item.release_date.slice(0, 4)} */}
+                        {item.first_air_date.slice(0, 4)}
                       </Text>
                       <Text className={classes.category2} size="xs">
                         {item.media_type}
                       </Text>
                     </Flex>
                     <Title order={3} className={classes.title}>
-                      {item.title
-                      }
+                      {item.original_name}
                     </Title>
                   </div>
                 </Paper>

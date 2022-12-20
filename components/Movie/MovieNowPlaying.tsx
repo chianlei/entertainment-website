@@ -9,7 +9,7 @@ import {
   Paper,
   Title,
 } from "@mantine/core";
-import { getNowPlayingMv } from "../api/movieApi";
+import { getNowPlayingMv } from "../../api/movieApi";
 import { useQuery } from "@tanstack/react-query";
 
 const useStyles = createStyles(() => ({

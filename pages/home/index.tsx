@@ -3,11 +3,11 @@ import { getGenreTV } from "../../api/genreApi";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { wrap } from "module";
-import MovieTrending from "../../components/MovieTrending";
-import MoviePopular from "../../components/MoviePopular";
-import MovieNowPlaying from "../../components/MovieNowPlaying";
-import MovieUpcoming from "../../components/MovieUpcoming";
-import MovieTopRated from "../../components/MovieTopRated";
+import MovieTrending from "../../components/Movie/MovieTrending";
+import MoviePopular from "../../components/Movie/MoviePopular";
+import MovieNowPlaying from "../../components/Movie/MovieNowPlaying";
+import MovieUpcoming from "../../components/Movie/MovieUpcoming";
+import MovieTopRated from "../../components/Movie/MovieTopRated";
 
 const useStyles = createStyles(() => ({
   container: {

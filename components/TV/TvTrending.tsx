@@ -9,7 +9,7 @@ import {
   Paper,
   Title,
 } from "@mantine/core";
-import { getMovieTrending } from "../api/trendingApi";
+import { getTvTrending } from "../../api/trendingApi";
 import { useQuery } from "@tanstack/react-query";
 
 const useStyles = createStyles(() => ({
@@ -87,13 +87,13 @@ const useStyles = createStyles(() => ({
   },
 }));
 
-export default function MovieTrending() {
+export default function TvTrending() {
   const { classes } = useStyles();
   const {
-    data: mvTrendingData,
-    isLoading: mvTrendingIsLoading,
-    isSuccess: mvTrendingIsSuccess,
-  } = useQuery(["movieTrending"], getMovieTrending);
+    data: tvTrendingData,
+    isLoading: tvTrendingIsLoading,
+    isSuccess: tvTrendingIsSuccess,
+  } = useQuery(["tvTrending"], getTvTrending);
 
   return (
     <div className={classes.div}>
@@ -110,9 +110,9 @@ export default function MovieTrending() {
         // loop
         align="start"
       >
-        {mvTrendingIsSuccess &&
+        {tvTrendingIsSuccess &&
           //@ts-ignore
-          mvTrendingData.results.map((item) => {
+          tvTrendingData.results.map((item) => {
             return (
               <Carousel.Slide key={item.id}>
                 <Paper
@@ -127,14 +127,14 @@ export default function MovieTrending() {
                   <div>
                     <Flex>
                       <Text className={classes.category} size="xs">
-                        {item.release_date.slice(0, 4)}
+                        {item.first_air_date.slice(0, 4)}
                       </Text>
                       <Text className={classes.category2} size="xs">
                         {item.media_type}
                       </Text>
                     </Flex>
                     <Title order={3} className={classes.title}>
-                      {item.title}
+                      {item.original_name}
                     </Title>
                   </div>
                 </Paper>

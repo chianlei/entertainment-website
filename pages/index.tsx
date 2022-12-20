@@ -12,14 +12,18 @@ import {
 } from "@tanstack/react-query";
 // import MovieTrending from "../components/movieTrending";
 import Swiper from "swiper";
-import MovieTrending from "../components/MovieTrending";
+import MovieTrending from "../components/Movie/MovieTrending";
 import { Button, Flex, Text, createStyles, Grid, Box } from "@mantine/core";
 import { useEffect } from "react";
-import MoviePopular from "../components/MoviePopular";
-import MovieNowPlaying from "../components/MovieNowPlaying";
-import MovieUpcoming from "../components/MovieUpcoming";
-import MovieTopRated from "../components/MovieTopRated";
-import TvTrending from "../components/TvTrending";
+import MoviePopular from "../components/Movie/MoviePopular";
+import MovieNowPlaying from "../components/Movie/MovieNowPlaying";
+import MovieUpcoming from "../components/Movie/MovieUpcoming";
+import MovieTopRated from "../components/Movie/MovieTopRated";
+import TvTrending from "../components/TV/TvTrending";
+import TvAiringToday from "../components/TV/TVAiringToday";
+import TvOnAir from "../components/TV/TVOnAir";
+import TvTopRated from "../components/TV/TVTopRated";
+import TvPopular from "../components/TV/TVPopular";
 
 //add
 const useStyles = createStyles(() => ({
@@ -98,7 +102,7 @@ export default function Home() {
             </p>
           </a>
         </div> */}
-              <Divider
+              {/* <Divider
                 my="xs"
                 label="Movie"
                 labelProps={{
@@ -108,7 +112,7 @@ export default function Home() {
                 labelPosition="center"
                 size="sm"
                 className={classes.container2}
-              />
+              /> */}
               <Flex className={classes.container}>
                 <MovieTrending />
                 <MoviePopular />
@@ -129,6 +133,10 @@ export default function Home() {
               />
               <Flex className={classes.container}>
                 <TvTrending />
+                <TvPopular/>
+                <TvAiringToday />
+                <TvOnAir />
+                <TvTopRated/>
               </Flex>
             </main>
           </MantineProvider>

@@ -9,7 +9,7 @@ import {
   Paper,
   Title,
 } from "@mantine/core";
-import { getUpcomingMv } from "../api/movieApi";
+import { getTopRatedMv } from "../../api/movieApi";
 import { useQuery } from "@tanstack/react-query";
 
 const useStyles = createStyles(() => ({
@@ -90,18 +90,18 @@ const useStyles = createStyles(() => ({
   },
 }));
 
-export default function MovieUpcoming() {
+export default function MovieTopRated() {
   const { classes } = useStyles();
   const {
-    data: mvUpcomingData,
-    isLoading: mvUpcomingIsLoading,
-    isSuccess: mvUpcomingIsSuccess,
-  } = useQuery(["movieUpcoming"], getUpcomingMv);
+    data: mvTopRatedData,
+    isLoading: mvTopRatedIsLoading,
+    isSuccess: mvTopRatedIsSuccess,
+  } = useQuery(["movieTopRated"], getTopRatedMv);
 
   return (
     <div className={classes.div}>
       <div className={classes.div2}>
-        <Text className={classes.title2}>Upcoming</Text>
+        <Text className={classes.title2}>Top Rated</Text>
       </div>
       <Carousel
         // withIndicators
@@ -113,9 +113,9 @@ export default function MovieUpcoming() {
         // loop
         align="start"
       >
-        {mvUpcomingIsSuccess &&
+        {mvTopRatedIsSuccess &&
           //@ts-ignore
-          mvUpcomingData.results.map((item) => {
+          mvTopRatedData.results.map((item) => {
             return (
               <Carousel.Slide key={item.id}>
                 <Paper

@@ -9,8 +9,9 @@ import {
   Paper,
   Title,
 } from "@mantine/core";
-import { getPopularMv } from "../api/movieApi";
+import { getPopularMv } from "../../api/movieApi";
 import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
 
 const useStyles = createStyles(() => ({
   div: {
@@ -102,6 +103,9 @@ export default function MoviePopular() {
     <div className={classes.div}>
       <div className={classes.div2}>
         <Text className={classes.title2}>Popular</Text>
+        <Link href="/movie/popular/1">
+          <Button variant="white">See More</Button>
+        </Link>
       </div>
       <Carousel
         // withIndicators
