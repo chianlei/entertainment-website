@@ -12,6 +12,7 @@ import {
 import { getPopularMv } from "../../../api/movieApi";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const useStyles = createStyles(() => ({
   container: {
@@ -75,9 +76,10 @@ const PopularMovies = () => {
     data: mvPopularData,
     isLoading: mvPopularIsLoading,
     isSuccess: mvPopularIsSuccess,
+    refetch: mvPopularRefetch,
   } = useQuery(["moviePopular"], getPopularMv);
 
-  const [number, setNumber] = useState(0);
+  const [number, setNumber] = useState(1);
   useEffect(() => {}, []);
 
   return (
@@ -127,10 +129,22 @@ const PopularMovies = () => {
           <Button variant="outline" className={classes.button}>
             PREV
           </Button>
-          <Box></Box>
-          <Button variant="outline" className={classes.button}>
-            NEXT
-          </Button>
+          {mvPopularIsSuccess && (
+            <Box>{mvPopularData.page + "/" + mvPopularData.total_pages}</Box>
+          )}
+          <Link href={`/movie/popular/${number}`}>
+            <Button
+              variant="outline"
+              className={classes.button}
+              onClick={() => {
+                // mvPopularData.refetch();
+                setNumber(number + 1);
+                mvPopularRefetch();
+              }}
+            >
+              NEXT
+            </Button>
+          </Link>
         </Flex>
       </Stack>
     </>
